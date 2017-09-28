@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 12, 2017 11:52:00 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.gamesShop.model.Producer" table="producer" catalog="games_data" optimistic-lock="version">
+        <id name="producerId" type="java.lang.Integer">
+            <column name="producer_id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="45" not-null="true" />
+        </property>
+        <set name="games" table="game" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="producer_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gamesShop.model.Game" />
+        </set>
+        <set name="gameNameses" table="game_names" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="producer_id" not-null="true" />
+            </key>
+            <one-to-many class="com.gamesShop.model.GameNames" />
+        </set>
+    </class>
+</hibernate-mapping>

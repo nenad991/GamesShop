@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 12, 2017 11:52:00 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.gamesShop.model.Game" table="game" catalog="games_data" optimistic-lock="version">
+        <id name="gameId" type="java.lang.Integer">
+            <column name="game_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="availability" class="com.gamesShop.model.Availability" fetch="select">
+            <column name="availability_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="gameNames" class="com.gamesShop.model.GameNames" fetch="select">
+            <column name="game_names_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="gameType" class="com.gamesShop.model.GameType" fetch="select">
+            <column name="game_type_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="producer" class="com.gamesShop.model.Producer" fetch="select">
+            <column name="producer_id" not-null="true" />
+        </many-to-one>
+        <property name="price" type="big_decimal">
+            <column name="price" precision="6" not-null="true" />
+        </property>
+        <property name="picture" type="string">
+            <column name="picture" length="512" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="1024" />
+        </property>
+    </class>
+</hibernate-mapping>
